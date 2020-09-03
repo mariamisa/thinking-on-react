@@ -9,7 +9,7 @@ const products=[
     {category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
     {category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5"},
     {category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
-  ];
+];
 export default class FilterableProductTable extends Component {
     state={
         filterText:"",
@@ -22,13 +22,17 @@ export default class FilterableProductTable extends Component {
         this.setState({inStockOnly:!this.state.inStockOnly})
     }
     render() {
+        const {inStockOnly,filterText}=this.state;
         return (
             <div style={{margin:"auto",width:'50%',textAlign:"left",marginTop:50}}>
                 <SearchBar
-                 onSearch={this.handelFilterText}
-                 onCheck={this.handelOnStock}
-                 />
-                <ProductTable inStockOnly={this.state.inStockOnly} filterText={this.state.filterText} products={products}/>
+                    onSearch={this.handelFilterText}
+                    onCheck={this.handelOnStock}
+                />
+                <ProductTable 
+                    inStockOnly={inStockOnly}
+                    filterText={filterText}
+                    products={products}/>
             </div>
         )
     }
